@@ -1,20 +1,25 @@
-function Ship(length,ship_decks = Array(length).fill(" "),sunk=false) {
+function Ship(length,decks = Array(length).fill(" "),sunk=false) {
+    if (length > 5 || length < 2) {
+        throw new Error("The ship length is between 3-5")
+    }
 
      const hit = (position) => {
-        if (ship_decks[position] === " ") {
-            ship_decks[position] = "hit"
+        if (decks[position] === " ") {
+            decks[position] = "hit"
+            return
         }
+        throw new Error("This place was already hit")
     }
 
     const isSunk = () => {
-        return ship_decks.every((deck_status) => {
+        return decks.every((deck_status) => {
             deck_status === "hit"
         })
     }
 
     return {
             length,
-            ship_decks,
+            decks,
             sunk,
             hit,
             isSunk
