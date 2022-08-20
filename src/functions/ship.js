@@ -17,7 +17,7 @@ function Ship(length,sunk=false) {
 
     const  decks = []
     for (let i = 0;i < length;i++) {
-        decks.push({ship_type: ship_type, ship_length: length, was_hit: false})
+        decks.push({ship_type: ship_type, ship_length: length, was_hit: false, hit})
     }
 
      const hit = (position) => {
