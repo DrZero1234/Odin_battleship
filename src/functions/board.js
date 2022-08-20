@@ -4,7 +4,7 @@ const Board = () => {
     const board_size = 10;
     const board = [];
     for (let i = 0; i < board_size;i++) {
-        const row = Array(board_size).fill("O")
+        const row = Array(board_size).fill({ship_length: null, ship_type: null, was_hit: false})
         board.push(row);
     }
 
@@ -20,7 +20,7 @@ const Board = () => {
 
         // Not allowing the ship to place 2 boats on eachother
         const ship_placement = board[row].slice(col,(col+ship.length));
-        if (ship_placement.includes(" ") || ship_placement.includes("hit")) {
+        if (ship_placement.filter(e => e.ship_type !== null).length > 0) {
             throw new Error("Cant place ship there")
         }
 
