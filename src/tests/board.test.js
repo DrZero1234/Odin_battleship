@@ -19,11 +19,11 @@ test("Placing Two Ship", () => {
 
     board.placeShip(ship,2,3);
     board.placeShip(ship2,5,1);
-    expect(board.board[1]).toEqual([])
     board.receiveHit(2,3)
     board.receiveHit(2,4)
     board.receiveHit(2,5)
     board.receiveHit(5,6)
+    expect(board.board[5]).toEqual([])
     expect(ship.isSunk()).toBeTruthy()
     board.receiveHit(5,8)
     expect(board.board[5][8].was_hit).toBeTruthy()

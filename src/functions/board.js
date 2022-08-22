@@ -62,10 +62,11 @@ const Board = (board = [],MISSED_SHOTS = [],) => {
         return board
     }
 
-    function allShipSunk() {
-        // Getting all the ship fields
-        //main_arr.map((subarr) => subarr.filter((obj) => obj.ship_type != null))
-    }
+    function allShipSunk(board) {
+        const falttened_board = board.reduce((previousValue, currentValue) =>previousValue.concat(currentValue))    
+        const only_ship_list = falttened_board.filter(({ship_type}) => ship_type != null);
+        return only_ship_list.every(({was_hit}) => was_hit)
+}
 
 
 
@@ -78,6 +79,7 @@ const Board = (board = [],MISSED_SHOTS = [],) => {
         placeShip,
         getFirstDeck,
         receiveHit,
+        allShipSunk
     }
 
 }
