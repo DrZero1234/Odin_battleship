@@ -1,3 +1,5 @@
+
+
 function Ship(length,sunk=false) {
     let ship_type;
     if (length > 5 || length < 2) {
@@ -49,4 +51,11 @@ function Ship(length,sunk=false) {
         }
 }
 
-module.exports = Ship
+function createShips() {
+    return [new Ship(2),new Ship(3),new Ship(3), new Ship(4), new Ship(5)];
+};
+
+
+
+export {createShips}
+export default Ship

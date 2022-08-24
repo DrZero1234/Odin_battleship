@@ -1,5 +1,7 @@
 import Ship from "../functions/ship";
-import Board from "../functions/board";
+import Board from "../functions/board.js";
+import {allShipsPlaced, autoPlaceShips} from "../functions/board.js";
+
 
 test("Initiating Board", () => {
     expect(Board().board[0][9]).toEqual({ship_length: null,ship_type: null, was_hit: false})
@@ -23,11 +25,18 @@ test("Placing Two Ship", () => {
     board.receiveHit(2,4)
     board.receiveHit(2,5)
     board.receiveHit(5,6)
-    expect(board.board[5]).toEqual([])
+    //expect(board.board[5]).toEqual([])
     expect(ship.isSunk()).toBeTruthy()
     board.receiveHit(5,8)
     expect(board.board[5][8].was_hit).toBeTruthy()
-    expect(board.MISSED_SHOTS).toEqual("lel")
+    //expect(board.MISSED_SHOTS).toEqual("lel")
+})
+
+test("Testing auto placement and Ship placement check", () => {
+    const b = Board();
+    autoPlaceShips(b);
+    console.log(b.board)
+    expect(allShipsPlaced(b.board)).toBeTruthy();
+
     
-    expect()
 })
