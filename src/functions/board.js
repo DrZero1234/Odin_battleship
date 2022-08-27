@@ -1,8 +1,15 @@
 import Ship from "./ship";
 
+const BOARD_SIZE = 10;
+
+class Gameboard {
+
+
+
+}
+
 const Board = () => {
-    const board_size = 10;
-    const board = [];
+
     for (let i = 0; i < board_size;i++) {
         const row = Array(board_size).fill("O")
         board.push(row);
