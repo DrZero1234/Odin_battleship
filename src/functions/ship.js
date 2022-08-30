@@ -1,3 +1,5 @@
+
+
 function Ship(length) {
     let ship_type;
 
@@ -50,4 +52,12 @@ function Ship(length) {
         }
 }
 
-export {Ship}
+function basicUnits() {
+    return [Ship(2),Ship(2), Ship(3), Ship(4), Ship(4), Ship(5)];
+}
+
+function unitsLength(unit_arr) {
+    return unit_arr.reduce((previous,current) => previous + current.length, 0)
+}
+
+export {Ship, basicUnits, unitsLength}

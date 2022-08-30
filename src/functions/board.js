@@ -1,10 +1,7 @@
-import {Ship} from "./ship.js";
+import {Ship, basicUnits} from "./ship.js";
 
 const BOARD_SIZE = 10;
 
-function validPosition(row,col) {
-    return ((row >= 0 && row < BOARD_SIZE) && (col >= 0 && col < BOARD_SIZE))
-}
 
 
 class Gameboard {
@@ -50,10 +47,11 @@ class Gameboard {
         if (!validPosition(row,col) || this.board[row][col].was_hit) {
             throw new Error("You are unable to attack this position")
         }
-        if (!this.missed_shots.find((obj) => obj.row === row && obj.col === col)) {
+        if (!this.missed_shots.find((obj) => obj.row === row && obj.col === col) && !this.board[row][col].ship_type) {
             this.missed_shots.push({row, col});
-            this.board[row][col].was_hit = true;
+
         }
+        this.board[row][col].was_hit = true;
     }
 
     allShipSunk() {
@@ -65,51 +63,25 @@ class Gameboard {
 }
 
 
-
-
-
-
-/*
-
-const Board = () => {
-
-    for (let i = 0; i < board_size;i++) {
-        const row = Array(board_size).fill("O")
-        board.push(row);
-    }
-
-    function placeShip(ship,row,col,) {
-        if ((row < 0 || row > 9)  || (col < 0 || col > 9)) {
-            throw new Error("Invalid position")
-        }
-
-        // Adjusting the col if the Ship length goes overboard
-        while ((col + ship.length) > board_size) {
-            col --;
-        };
-
-        // Not allowing the ship to place 2 boats on eachother
-        const ship_placement = board[row].slice(col,(col+ship.length));
-        if (ship_placement.includes(" ") || ship_placement.includes("hit")) {
-            throw new Error("Cant place ship there")
-        }
-
-        for (let deck of ship.decks) {
-            board[row][col] = deck;
-            col++;
-        }
-
-
-
-
-    }
-
-    return {
-        board,
-        placeShip
-    }
-
+function validPosition(row,col) {
+    return ((row >= 0 && row < BOARD_SIZE) && (col >= 0 && col < BOARD_SIZE))
 }
 
-*/
-export {Gameboard, validPosition}
+function autoPlaceShips(board, units) {
+    units.forEach((ship) => {
+            let row = Math.floor(Math.random() * 10);
+            let col = Math.floor(Math.random() * 10);
+        while (!board.placeShip(ship,row, col)) {
+            board.placeShip(ship,row, col)   
+        }
+    })
+}
+
+function onlyShipList(board) {
+      const falttened_board = board.reduce((previousValue, currentValue) => previousValue.concat(currentValue))    
+      const only_ship_list = falttened_board.filter(({ship_type}) => ship_type != null);
+      return only_ship_list
+}
+
+
+export {Gameboard, validPosition, autoPlaceShips, onlyShipList}
