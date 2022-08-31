@@ -5,9 +5,7 @@ import { Ship } from "../functions/ship.js";
 
 
 test("Testing basic player functions", () => {
-    const p1 = Player("Player1");
-    const p2 = Player("CPU")
-    p1.endTurn(p2);
-    console.log(p1)
-    expect(p1.turn).toBeFalsy()
+    let p1 = Player("Player 1");    
+    p1.setName("New Name");
+    console.log(p1.name)
 })

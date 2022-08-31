@@ -1,33 +1,25 @@
-function Player(name) {
-    let turn = true;
-    function setName(n) {
-        name = n;
-    }
-
-    function endTurn(player2) {
-        if (turn) {
-            turn = false;
-            player2.startTurn();
-        }
-    }
-
-    function startTurn() {
-        if (!turn) {
-            turn = true
-        };
-    }
-
-    function checkTurn() {
-        return turn;
-    }
-
+function Player(player_name,player_turn = true) {
     return {
-        name,
-        turn,
-        setName,
-        startTurn,
-        endTurn,
-        checkTurn,
+        name: player_name,
+        turn: player_turn,
+        setName(new_name) {
+            player_name = new_name
+        },
+        startTurn() {
+            if (!player_turn) {
+                player_turn = true
+            }
+        },
+        endTurn(player2) {
+            if (player_turn) {
+                player_turn = false;
+                player2.startTurn();
+            }
+        },
+        getTurn() {
+            return player_turn;
+        }
+
     }
 }
 
