@@ -31,7 +31,8 @@ class Gameboard {
         // Getting the ship "slice"
         const ship_placement = this.board[row].slice(col,(col+ship.length));
         if (!ship_placement.every(({ship_type}) => ship_type === null)){
-            throw new Error("Cant place ships on top of each other");
+            console.log("Cant place ships on top of each other");
+            return false
         }
 
 
@@ -69,18 +70,29 @@ function validPosition(row,col) {
 
 function autoPlaceShips(board, units) {
     units.forEach((ship) => {
-            let row = Math.floor(Math.random() * 10);
-            let col = Math.floor(Math.random() * 10);
-        while (!board.placeShip(ship,row, col)) {
-            board.placeShip(ship,row, col)   
-        }
+        let isFree;
+        do {
+            isFree = findFreePosition(board,ship)
+        } while (!isFree)
+        board.placeShip(ship,isFree.row,isFree.col)
+        
     })
 }
 
-function onlyShipList(board) {
-      const falttened_board = board.reduce((previousValue, currentValue) => previousValue.concat(currentValue))    
+function onlyShipList(b) {
+      const falttened_board = b.board.reduce((previousValue, currentValue) => previousValue.concat(currentValue))    
       const only_ship_list = falttened_board.filter(({ship_type}) => ship_type != null);
       return only_ship_list
+}
+
+function findFreePosition(board,ship) {
+    let row = Math.floor(Math.random() * 10);
+    let col = Math.floor(Math.random() * 10);
+    const ship_placement = board.board[row].slice(col,(col+ship.length));
+    if (ship_placement) {
+        return {row,col}
+    }
+    return false;
 }
 
 

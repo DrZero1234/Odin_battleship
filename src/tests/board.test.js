@@ -1,5 +1,5 @@
-import { Gameboard, validPosition, autoPlaceShips, onlyShipList } from "../functions/board.js";
-import {Ship, basicUnits} from "../functions/ship.js";
+import { autoPlaceShips, Gameboard, onlyShipList, validPosition } from "../functions/board.js";
+import { basicUnits, Ship } from "../functions/ship.js";
 
 
 test("Valid position test", () => {
@@ -30,11 +30,22 @@ test("Placing ship to board", () => {
 
 })
 
+test("Placing ships on top of each other", () => {
+    const b = new Gameboard();
+    const s1 = Ship(3);
+    const s2 = Ship(4);
+
+    b.placeShip(s1,1,5);
+    //expect(() => b.placeShip(s2,1,2)).toThrow("Cant place ships on top of each other")
+})
+
+
+
+
 test("Autoplacing Ships to board", () => {
     const b = new Gameboard();
     const units = basicUnits();
     autoPlaceShips(b,units);
-    expect(onlyShipList().length).toEqual(20);
-
-
+    expect(onlyShipList(b).length).toEqual(20);
 })
+

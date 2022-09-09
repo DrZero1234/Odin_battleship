@@ -4,8 +4,13 @@ import { Ship } from "../functions/ship.js";
 
 
 
+// change player name by factory.name = new name
+
 test("Testing basic player functions", () => {
-    let p1 = Player("Player 1");    
-    p1.setName("New Name");
-    console.log(p1.name)
+    let p1 = Player("Player 1");
+    let p2 = Player("Player 2")
+    p1.name = "New name"
+    p1.setName("New Name");   
+    p1.endTurn(p2)
+    console.log(p1.getTurn())
 })
