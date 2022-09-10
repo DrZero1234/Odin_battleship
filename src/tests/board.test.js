@@ -27,7 +27,7 @@ test("Placing ship to board", () => {
 
 
     expect(b.missed_shots).toEqual([{row:5, col: 1}, {row: 7, col: 5}])
-
+    expect(b.shot_spots().length).toBeGreaterThan(1)
 })
 
 test("Placing ships on top of each other", () => {
@@ -36,7 +36,7 @@ test("Placing ships on top of each other", () => {
     const s2 = Ship(4);
 
     b.placeShip(s1,1,5);
-    //expect(() => b.placeShip(s2,1,2)).toThrow("Cant place ships on top of each other")
+    expect(b.placeShip(s2,1,2)).toBeFalsy()
 })
 
 
@@ -46,6 +46,10 @@ test("Autoplacing Ships to board", () => {
     const b = new Gameboard();
     const units = basicUnits();
     autoPlaceShips(b,units);
-    expect(onlyShipList(b).length).toEqual(20);
+    console.log(onlyShipList(b))
+    for (let i = 0; i < 1000; i++) {
+        expect(onlyShipList(b).length).toEqual(20);
+    }
+    
 })
 

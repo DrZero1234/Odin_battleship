@@ -61,6 +61,13 @@ class Gameboard {
         return only_ship_list.every(({was_hit}) => was_hit)
     }
 
+
+    // Gets every shot spots
+    shot_spots() {
+        const falttened_board = this.board.reduce((previousValue, currentValue) => previousValue.concat(currentValue))    
+        return falttened_board.filter(({was_hit}) => was_hit === true);
+    }
+
 }
 
 
@@ -74,6 +81,7 @@ function autoPlaceShips(board, units) {
         do {
             isFree = findFreePosition(board,ship)
         } while (!isFree)
+        console.log(isFree)
         board.placeShip(ship,isFree.row,isFree.col)
         
     })
@@ -85,11 +93,15 @@ function onlyShipList(b) {
       return only_ship_list
 }
 
+
+// Helps finding free positions for the AI when autoplacing the ships
+// TODO Make it work for vertical ships aswell
+
 function findFreePosition(board,ship) {
     let row = Math.floor(Math.random() * 10);
     let col = Math.floor(Math.random() * 10);
     const ship_placement = board.board[row].slice(col,(col+ship.length));
-    if (ship_placement) {
+    if (ship_placement.every(({ship_type}) => ship_type === null)) {
         return {row,col}
     }
     return false;
