@@ -12,7 +12,7 @@ class Gameboard {
         for (let i = 0;i < BOARD_SIZE;i++) {
             let row = [];
             for (let j = 0; j < BOARD_SIZE;j++) {
-                row.push({ship_type: null, was_hit: null})
+                row.push({ship_type: null, was_hit: null, row: i, col: j})
             }
             this.board.push(row);
         }
@@ -46,13 +46,15 @@ class Gameboard {
 
     receiveAttack(row,col) {
         if (!validPosition(row,col) || this.board[row][col].was_hit) {
-            throw new Error("You are unable to attack this position")
+            console.log("You are unable to attack this position")
+            return false
         }
         if (!this.missed_shots.find((obj) => obj.row === row && obj.col === col) && !this.board[row][col].ship_type) {
             this.missed_shots.push({row, col});
 
         }
         this.board[row][col].was_hit = true;
+        return true
     }
 
     allShipSunk() {
@@ -67,6 +69,12 @@ class Gameboard {
         const falttened_board = this.board.reduce((previousValue, currentValue) => previousValue.concat(currentValue))    
         return falttened_board.filter(({was_hit}) => was_hit === true);
     }
+    was_hit(cell) {
+        if (cell.was_hit) {
+            return true
+        }
+        return false
+    } 
 
 }
 

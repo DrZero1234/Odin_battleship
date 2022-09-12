@@ -42,7 +42,7 @@ test("Placing ships on top of each other", () => {
 
 
 
-test("Autoplacing Ships to board", () => {
+test.only("Autoplacing Ships to board", () => {
     const b = new Gameboard();
     const units = basicUnits();
     autoPlaceShips(b,units);
@@ -51,5 +51,11 @@ test("Autoplacing Ships to board", () => {
         expect(onlyShipList(b).length).toEqual(20);
     }
     
+})
+
+test("Attacking the same position twice", () => {
+    const b = new Gameboard();
+    b.receiveAttack(0,5);
+    expect(b.receiveAttack(0,5)).toBeFalsy()
 })
 
