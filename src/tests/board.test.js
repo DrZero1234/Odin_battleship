@@ -42,7 +42,7 @@ test("Placing ships on top of each other", () => {
 
 
 
-test.only("Autoplacing Ships to board", () => {
+test("Autoplacing Ships to board", () => {
     const b = new Gameboard();
     const units = basicUnits();
     autoPlaceShips(b,units);

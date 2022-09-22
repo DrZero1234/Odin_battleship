@@ -51,6 +51,20 @@ function makeRandomPlay(b) {
     console.log(b.board[row][col])
 }
 
+function createPlayers() {
+    const PLAYER_NAME_INPUT = document.getElementById("p-name-input")
+    if (PLAYER_NAME_INPUT) {
+        if (PLAYER_NAME_INPUT.value.length > 0) {
+            const p1 = Player(PLAYER_NAME_INPUT.value);
+            const p2 = Player("CPU",false,true);
+            return {p1, p2};
+        } else {
+            return false;
+        }
+        
+    }
+}
 
 
-export {Player, makeRandomPlay}
+
+export {Player, makeRandomPlay, createPlayers}
