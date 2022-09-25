@@ -6,7 +6,7 @@ import { Ship } from "../functions/ship.js";
 
 // The updated name and turn values are in the getName(), getTurn() functions
 
-test.only("Testing basic player functions", () => {
+test("Testing basic player functions", () => {
     let p1 = Player("Player 1");
     let p2 = Player("Player 2")
     p1.setName("New name");   

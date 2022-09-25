@@ -89,7 +89,6 @@ function autoPlaceShips(board, units) {
         do {
             isFree = findFreePosition(board,ship)
         } while (!isFree)
-        console.log(isFree)
         board.placeShip(ship,isFree.row,isFree.col)
         
     })

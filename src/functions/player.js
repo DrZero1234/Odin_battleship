@@ -7,7 +7,7 @@ function Player(player_name,player_turn = true,AI = false) {
         turn: player_turn,
         is_AI: AI,
         setName: (new_name) => {
-            if (player_name) {
+            if (new_name) {
                 player_name = new_name
             }
         },
@@ -51,18 +51,18 @@ function makeRandomPlay(b) {
     console.log(b.board[row][col])
 }
 
-function createPlayers() {
+function createPlayers(p) {
     const PLAYER_NAME_INPUT = document.getElementById("p-name-input")
     if (PLAYER_NAME_INPUT) {
-        if (PLAYER_NAME_INPUT.value.length > 0) {
-            const p1 = Player(PLAYER_NAME_INPUT.value);
-            const p2 = Player("CPU",false,true);
-            return {p1, p2};
-        } else {
-            return false;
-        }
-        
+            if (PLAYER_NAME_INPUT.value.length > 0) {
+        p.name = PLAYER_NAME_INPUT.value
+        console.log(p)
+        return p
+    } else {
+        return false;
     }
+    }
+
 }
 
 

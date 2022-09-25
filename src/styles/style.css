@@ -1,5 +1,52 @@
-/*
 html {
-    background-color: red;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
-*/
+
+body,
+html {
+    height: 100%;
+    width: 100%;
+}
+
+.game-content {
+    display: flex;
+
+    gap: 10%;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.board {
+    display: grid;
+    grid: repeat(10, 1fr) / repeat(10, 1fr);
+    max-width: 550px;
+    margin: 0 auto;
+
+}
+
+.cell {
+    border: 1px solid black;
+    padding: 16px;
+}
+
+.cell:hover {
+    background-color: aquamarine;
+    cursor: pointer;
+}
+
+.board-id {
+    text-align: center;
+
+}
+
+.main-title {
+    display: flex;
+    align-items: center;
+    margin: 14px 150px;
+    justify-content: space-between;
+
+}

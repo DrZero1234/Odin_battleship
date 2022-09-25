@@ -12,7 +12,13 @@ function generateMainPage() {
 
     const title = document.createElement("h1");
     title.textContent = "Battleship";
-    title.className = "main-title active";
+    title.id = "game-title";
+
+    const rules_link = document.createElement("a");
+    rules_link.href = "https://www.hasbro.com/common/instruct/battleship.pdf";
+    rules_link.textContent = "Rules"
+    rules_link.id = "game-rules";
+
 
     const player_name_input = document.createElement("input");
     player_name_input.type = "text";
@@ -24,15 +30,22 @@ function generateMainPage() {
     start_button.value = "Start Game";
     start_button.id = "start-game";
 
+    const test = document.createElement("input");
+    test.type = "submit";
+    test.value = "Test";
+    test.id = "test-name";
+
 
     MAIN_TITLE.appendChild(title);
+    MAIN_TITLE.appendChild(rules_link)
     MAIN_CONTENT.appendChild(player_name_input)
     MAIN_CONTENT.appendChild(start_button)
+    MAIN_CONTENT.appendChild(test)
 
     
 }
 
-export {generateMainPage}
+export {generateMainPage,}
 
 
 
