@@ -27,10 +27,14 @@ function generateBoardHtml(board_class, player_class) {
                 cell_elem.dataset.was_hit = board_class.board[i][j].was_hit;
                 cell_elem.dataset.ship_type = board_class.board[i][j].ship_type;
                 console.log(cell_elem.dataset.ship_type)
-                
-                if (cell_elem.dataset.ship_type != "null" & !player_class.is_AI) {
+
+                if (!player_class.is_AI) {
+                    cell_elem.style.pointerEvents = "none";
+                }
+                if (cell_elem.dataset.ship_type != "null" && !player_class.is_AI) {
                     cell_elem.style.backgroundColor = "Blue"
                 }
+
                 board_html.appendChild(cell_elem)
             }
         }   
@@ -41,8 +45,18 @@ function generateGamePage() {
     const game_container = document.createElement("div");
     game_container.className = "game-content";
 
-    const player_information_div = document.createElement("div");
-    player_information_div.class = "information";
+
+    /*
+    const player_board_wrapper_div = document.createElement("div");
+    player_board_wrapper_div.class = "board-wrapper";
+    player_board_wrapper_div.id = "player-board-wrapper";
+
+    const player_title = document.createElement("h2");
+    player_title.textContent = "Player´s board";
+    player_board_wrapper_div.appendChild(player_title)
+    */
+
+
     
     const player_board_title_div = document.createElement("h2");
     player_board_title_div.textContent = "Player´s Board";
@@ -67,6 +81,16 @@ function generateGamePage() {
 
 }
 
+function updateCell(c) {
+    if (c.dataset.ship_type != "null") {
+        c.style.backgroundColor = "green"
+    } else {
+        c.style.backgroundColor = "red";
+    }
+    c.style.pointerEvents = "none"
+    c.dataset.was_hit = true;
+}
+
 /*
  <div class="container">
         <div class="game-content">
@@ -89,4 +113,4 @@ function generateGamePage() {
         </div>
 */
 
-export {generateGamePage, generateBoardHtml}
+export {generateGamePage, generateBoardHtml, updateCell}

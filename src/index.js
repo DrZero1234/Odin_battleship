@@ -3,9 +3,10 @@ import "./styles/style.css";
 import { Gameboard,validPosition,autoPlaceShips,onlyShipList } from "./functions/board.js";
 import { Player,makeRandomPlay, createPlayers } from "./functions/player.js";
 import { Ship, basicUnits } from "./functions/ship.js";
-import { generateGamePage, generateBoardHtml } from "./functions/DOMFunctions/Gameboard_UI.js";
+import { generateGamePage, generateBoardHtml,updateCell } from "./functions/DOMFunctions/Gameboard_UI.js";
 
 import { generateMainPage } from "./functions/DOMFunctions/main_page.js";
+
 
 
 
@@ -32,6 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     generateBoardHtml(player_board, player1);
     generateBoardHtml(cpu_board, player2)
+
+    const cpu_board_html = document.getElementById("cpu-board");
+    const cpu_board_cells = cpu_board_html.querySelectorAll(".cell");
+    cpu_board_cells.forEach((cell) => {
+        cell.addEventListener("click", () => {
+            cpu_board.receiveAttack(cell.dataset.row, cell.dataset.col);
+            updateCell(cell)
+            
+        })
+    })
+
         
     })
     test_button.addEventListener("click", function() {console.log(player1.name)})
