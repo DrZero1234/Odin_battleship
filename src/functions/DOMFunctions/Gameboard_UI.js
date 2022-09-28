@@ -24,14 +24,11 @@ function generateBoardHtml(board_class, player_class) {
                 cell_elem.className = "cell";
                 cell_elem.dataset.row = i;
                 cell_elem.dataset.col = j;
-                cell_elem.dataset.was_hit = board_class.board[i][j].was_hit;
-                cell_elem.dataset.ship_type = board_class.board[i][j].ship_type;
-                console.log(cell_elem.dataset.ship_type)
 
                 if (!player_class.is_AI) {
                     cell_elem.style.pointerEvents = "none";
                 }
-                if (cell_elem.dataset.ship_type != "null" && !player_class.is_AI) {
+                if (board_class.board[i][j].ship_type != null &&  !player_class.is_AI) {
                     cell_elem.style.backgroundColor = "Blue"
                 }
 
@@ -81,14 +78,17 @@ function generateGamePage() {
 
 }
 
-function updateCell(c) {
-    if (c.dataset.ship_type != "null") {
-        c.style.backgroundColor = "green"
-    } else {
-        c.style.backgroundColor = "red";
+
+// Updates the appearance of the cell you hit 
+
+function updateCell(cell,board_class,row,col) {
+    if (board_class instanceof Gameboard) {
+        if (board_class.board[row][col].ship_type) {
+            cell.style.backgroundColor = "green"
+        } else {
+            cell.style.backgroundColor = "red"
+        }
     }
-    c.style.pointerEvents = "none"
-    c.dataset.was_hit = true;
 }
 
 /*

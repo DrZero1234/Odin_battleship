@@ -28,3 +28,10 @@ test("Testing the random attacking function", () => {
     //expect(b.shot_spots().length).toBe(98)
     expect(b.allShipSunk()).toBeTruthy()
 })
+
+test ("Ending player turn", () => {
+    const p1 = Player("Player1",true,false);
+    const p2 = Player("Player2",false,false)
+    p1.endTurn(p2);
+    console.log(p1.turn)
+}) 

@@ -30,17 +30,12 @@ function generateMainPage() {
     start_button.value = "Start Game";
     start_button.id = "start-game";
 
-    const test = document.createElement("input");
-    test.type = "submit";
-    test.value = "Test";
-    test.id = "test-name";
 
 
     MAIN_TITLE.appendChild(title);
     MAIN_TITLE.appendChild(rules_link)
     MAIN_CONTENT.appendChild(player_name_input)
     MAIN_CONTENT.appendChild(start_button)
-    MAIN_CONTENT.appendChild(test)
 
     
 }
