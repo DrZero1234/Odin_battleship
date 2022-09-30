@@ -38,14 +38,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const cpu_board_html = document.getElementById("cpu-board");
         const cpu_board_cells = cpu_board_html.querySelectorAll(".cell");
 
+        const player_board_html = document.getElementById("player-board")
+
         cpu_board_cells.forEach((cell) => {
             cell.addEventListener("click", () => {
                 cpu_board.receiveAttack(cell.dataset.row, cell.dataset.col);
-                updateCell(cell,cpu_board,cell.dataset.row,cell.dataset.col)
-                switchTurn(player1,player2)
-                console.log(player1)
-                console.log(player2)
-                cellClickable() 
+                updateCell(cell,cpu_board)
+                let enemyAttack = makeRandomPlay(player_board);
+                let player_cell = player_board_html.querySelector(`[data-row="${enemyAttack.row.toString()}"][data-col="${enemyAttack.col.toString()}"]`);
+                updateCell(player_cell, player_board)
             })
         })
     })
@@ -56,29 +57,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Making the player´s board clickable if it is the CPU´s turn
 
-function cellClickable() {
-    const player_board_html = document.getElementById("player-board");
-    const player_board_cells = player_board_html.querySelectorAll(".cell")
-    if (player1.turn) {
-        player_board_cells.forEach((cell) => {
-            cell.style.pointerEvents = "none"
-        })
-    } else {
-        player_board_cells.forEach((cell) => {
-            cell.style.pointerEvents = "auto"
-        })
-    }
-}
 
-function switchTurn(p1,p2) {
-    if (p1 instanceof Player && p2 instanceof Player) {
-    if (p1.turn) {
-        p1.turn = false;
-        p2.turn = true
-    } else {
-        p1.turn = true
-        p2.turn = false;
-    }
-    }
-
-}

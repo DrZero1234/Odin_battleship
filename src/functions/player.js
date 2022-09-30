@@ -38,17 +38,16 @@ function makeRandomPlay(b) {
     if (!(b instanceof Gameboard)) {
         return false
     }
-    console.log("Shot spots: ")
-    console.log(b.shot_spots())
+    //console.log("Shot spots: ")
+    //console.log(b.shot_spots())
     let next_attack = b.receiveAttack(row,col) 
-    while (!next_attack) {
+    while (next_attack === false) {
         let col = Math.floor(Math.random() * 10);
         let row = Math.floor(Math.random() * 10);
         console.log(`New coordinates generated: ${row}, ${col}`)
         next_attack = b.receiveAttack(row,col)
     }
-    console.log(`Row: ${row},\n Col: ${col}`)
-    console.log(b.board[row][col])
+    return {row,col}
 }
 
 function createPlayers(p) {

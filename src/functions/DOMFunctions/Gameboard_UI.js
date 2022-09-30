@@ -81,9 +81,9 @@ function generateGamePage() {
 
 // Updates the appearance of the cell you hit 
 
-function updateCell(cell,board_class,row,col) {
+function updateCell(cell,board_class) {
     if (board_class instanceof Gameboard) {
-        if (board_class.board[row][col].ship_type) {
+        if (board_class.board[cell.dataset.row][cell.dataset.col].ship_type) {
             cell.style.backgroundColor = "green"
         } else {
             cell.style.backgroundColor = "red"

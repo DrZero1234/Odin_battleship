@@ -35,3 +35,17 @@ test ("Ending player turn", () => {
     p1.endTurn(p2);
     console.log(p1.turn)
 }) 
+
+test("Testing the makeRandomPlay() function", () => {
+    for (let i = 0; i < 1000; i++) {
+            let enemy_board = new Gameboard();
+    for (let i = 0;i < 50;i++) {
+        makeRandomPlay(enemy_board);
+    }
+    const falttened_board = enemy_board.board.reduce((previousValue, currentValue) => previousValue.concat(currentValue))
+    const attacked_spots = falttened_board.filter(({was_hit}) => was_hit);
+    expect(attacked_spots.length).toBe(50)
+
+    }
+
+})
