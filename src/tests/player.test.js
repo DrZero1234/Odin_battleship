@@ -37,8 +37,7 @@ test ("Ending player turn", () => {
 }) 
 
 test("Testing the makeRandomPlay() function", () => {
-    for (let i = 0; i < 1000; i++) {
-            let enemy_board = new Gameboard();
+    let enemy_board = new Gameboard();
     for (let i = 0;i < 50;i++) {
         makeRandomPlay(enemy_board);
     }
@@ -46,6 +45,6 @@ test("Testing the makeRandomPlay() function", () => {
     const attacked_spots = falttened_board.filter(({was_hit}) => was_hit);
     expect(attacked_spots.length).toBe(50)
 
-    }
+    
 
 })

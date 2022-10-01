@@ -40,13 +40,13 @@ function makeRandomPlay(b) {
     }
     //console.log("Shot spots: ")
     //console.log(b.shot_spots())
-    let next_attack = b.receiveAttack(row,col) 
-    while (next_attack === false) {
-        let col = Math.floor(Math.random() * 10);
-        let row = Math.floor(Math.random() * 10);
-        console.log(`New coordinates generated: ${row}, ${col}`)
-        next_attack = b.receiveAttack(row,col)
+    while (b.was_hit(b.board[row][col])) {
+        col = Math.floor(Math.random() * 10);
+        row = Math.floor(Math.random() * 10);
+        console.log(`Coordinates: ${row} ${col}`)
     }
+    console.log(`Final Coodinates: ${row}, ${col}`)
+    b.receiveAttack(row,col)
     return {row,col}
 }
 

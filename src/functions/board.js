@@ -74,7 +74,7 @@ class Gameboard {
             return true
         }
         return false
-    } 
+    }
 
 }
 

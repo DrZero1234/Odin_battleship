@@ -49,8 +49,7 @@ test("Autoplacing Ships to board", () => {
     console.log(onlyShipList(b))
     for (let i = 0; i < 1000; i++) {
         expect(onlyShipList(b).length).toEqual(20);
-    }
-    
+    }    
 })
 
 test("Attacking the same position twice", () => {

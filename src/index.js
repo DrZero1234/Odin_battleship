@@ -42,11 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         cpu_board_cells.forEach((cell) => {
             cell.addEventListener("click", () => {
-                cpu_board.receiveAttack(cell.dataset.row, cell.dataset.col);
-                updateCell(cell,cpu_board)
-                let enemyAttack = makeRandomPlay(player_board);
-                let player_cell = player_board_html.querySelector(`[data-row="${enemyAttack.row.toString()}"][data-col="${enemyAttack.col.toString()}"]`);
-                updateCell(player_cell, player_board)
+                if (cpu_board.receiveAttack(cell.dataset.row, cell.dataset.col)) {
+                    updateCell(cell,cpu_board)
+                    let enemyAttack = makeRandomPlay(player_board);
+                    let player_cell = player_board_html.querySelector(`[data-row="${enemyAttack.row.toString()}"][data-col="${enemyAttack.col.toString()}"]`);
+                    updateCell(player_cell, player_board)
+                }
+
             })
         })
     })
