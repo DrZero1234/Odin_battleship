@@ -76,6 +76,19 @@ class Gameboard {
         return false
     }
 
+    resetBoard()  {
+        this.missed_shots = [];
+
+        this.board = [];
+        for (let i = 0;i < BOARD_SIZE;i++) {
+            let row = [];
+            for (let j = 0; j < BOARD_SIZE;j++) {
+                row.push({ship_type: null, was_hit: null, row: i, col: j})
+            }
+            this.board.push(row);
+        }
+    }
+
 }
 
 

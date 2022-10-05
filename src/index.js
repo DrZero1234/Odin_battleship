@@ -4,6 +4,8 @@ import { Gameboard,validPosition,autoPlaceShips,onlyShipList } from "./functions
 import { Player,makeRandomPlay, createPlayers } from "./functions/player.js";
 import { Ship, basicUnits } from "./functions/ship.js";
 import { generateGamePage, generateBoardHtml,updateCell } from "./functions/DOMFunctions/Gameboard_UI.js";
+import { endGame } from "./functions/Game.js";
+import { clearDiv } from "./functions/DOMFunctions/OtherDomFunctions.js";
 
 import { generateMainPage } from "./functions/DOMFunctions/main_page.js";
 
@@ -42,11 +44,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         cpu_board_cells.forEach((cell) => {
             cell.addEventListener("click", () => {
-                if (cpu_board.receiveAttack(cell.dataset.row, cell.dataset.col)) {
-                    updateCell(cell,cpu_board)
-                    let enemyAttack = makeRandomPlay(player_board);
-                    let player_cell = player_board_html.querySelector(`[data-row="${enemyAttack.row.toString()}"][data-col="${enemyAttack.col.toString()}"]`);
-                    updateCell(player_cell, player_board)
+                    if (cpu_board.receiveAttack(cell.dataset.row, cell.dataset.col)) {
+                        updateCell(cell,cpu_board)
+                        let enemyAttack = makeRandomPlay(player_board);
+                        let player_cell = player_board_html.querySelector(`[data-row="${enemyAttack.row.toString()}"][data-col="${enemyAttack.col.toString()}"]`);
+                        updateCell(player_cell, player_board)
+                    if (cpu_board.allShipSunk() || player_board.allShipSunk()) {
+                        endGame();
+                        /*
+                        clearDiv(player_board_html);
+                        clearDiv(cpu_board_html)
+                        generateBoardHtml(player_board, player1);
+                        generateBoardHtml(cpu_board, player2)
+                        console.log(player_board);
+                        console.log(cpu_board);
+                        */
+                        
+                    }
                 }
 
             })

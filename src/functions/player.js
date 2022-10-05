@@ -43,9 +43,7 @@ function makeRandomPlay(b) {
     while (b.was_hit(b.board[row][col])) {
         col = Math.floor(Math.random() * 10);
         row = Math.floor(Math.random() * 10);
-        console.log(`Coordinates: ${row} ${col}`)
     }
-    console.log(`Final Coodinates: ${row}, ${col}`)
     b.receiveAttack(row,col)
     return {row,col}
 }

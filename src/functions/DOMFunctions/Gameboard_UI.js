@@ -58,6 +58,10 @@ function generateGamePage() {
     const player_board_title_div = document.createElement("h2");
     player_board_title_div.textContent = "Player´s Board";
 
+    const board_wrapper = document.createElement("div");
+    board_wrapper.id = "board-wrapper";
+
+
     const player_board_div = document.createElement("div");
     player_board_div.className = "board";
     player_board_div.id = "player-board";
@@ -66,8 +70,74 @@ function generateGamePage() {
     cpu_board_div.className = "board";
     cpu_board_div.id = "cpu-board";
 
-    game_container.appendChild(player_board_div);
-    game_container.appendChild(cpu_board_div)
+    const color_info_wrapper = document.createElement("div");
+    color_info_wrapper.className = "color-info-wrapper";
+
+    const green_info = document.createElement("div");
+    green_info.className = "color-information";
+    green_info.id = "green-information";
+
+    const green_block = document.createElement("div");
+    green_block.className = "color-block";
+    green_block.style.backgroundColor = "green";
+
+    const green_text = document.createElement("p");
+    green_text.className = "color-info-text";
+    green_text.textContent = "Hit";
+
+    green_info.appendChild(green_block);
+    green_info.appendChild(green_text)
+
+    const red_info = document.createElement("div");
+    red_info.className = "color-information";
+    red_info.id = "red-information";
+
+    const red_block = document.createElement("div");
+    red_block.className = "color-block";
+    red_block.style.backgroundColor = "red";
+
+    const red_text = document.createElement("p");
+    red_text.className = "color-info-text";
+    red_text.textContent = "Missed";
+
+    red_info.appendChild(red_block);
+    red_info.appendChild(red_text);
+
+    const blue_info = document.createElement("div");
+    blue_info.className = "color-information";
+    blue_info.id = "blue-information";
+
+    const blue_block = document.createElement("div");
+    blue_block.className = "color-block";
+    blue_block.style.backgroundColor = "blue";
+
+    const blue_text = document.createElement("p");
+    blue_text.className = "color-info-text";
+    blue_text.textContent = "Alive board";
+
+    blue_info.appendChild(blue_block);
+    blue_info.appendChild(blue_text)
+
+    const restart_btn = document.createElement("button");
+    restart_btn.textContent = "Restart";
+    restart_btn.className = "inactive";
+    restart_btn.id = "restart-btn";
+
+
+
+
+    color_info_wrapper.appendChild(blue_info);
+    color_info_wrapper.appendChild(red_info);
+    color_info_wrapper.appendChild(green_info);
+    
+
+    game_container.appendChild(board_wrapper)
+
+    board_wrapper.appendChild(player_board_div);
+    board_wrapper.appendChild(cpu_board_div)
+
+    game_container.appendChild(color_info_wrapper)
+    game_container.appendChild(restart_btn)
 
 
     clearDiv(MAIN_CONTENT);
