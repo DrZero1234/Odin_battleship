@@ -20,17 +20,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const start_button = document.getElementById("start-game")
     const test_button = document.getElementById("test-name")
     // Starting the game and setting the Player name
+    const player_board = new Gameboard();
+    const cpu_board = new Gameboard();
+
+    autoPlaceShips(player_board, basicUnits());
+    autoPlaceShips(cpu_board, basicUnits());
+
+    console.log(player_board)
+    console.log(cpu_board)
     start_button.addEventListener("click", function() {
         createPlayers(player1);
         generateGamePage();
-        let player_board = new Gameboard();
-        let cpu_board = new Gameboard();
-
-        autoPlaceShips(player_board, basicUnits());
-        autoPlaceShips(cpu_board, basicUnits());
-
-        console.log(player_board)
-        console.log(cpu_board)
 
         generateBoardHtml(player_board, player1);
         generateBoardHtml(cpu_board, player2)

@@ -1,8 +1,23 @@
 import { autoPlaceShips, Gameboard } from "./board.js"
 import { basicUnits } from "./ship.js";
 import { generateBoardHtml, updateCell } from "./DOMFunctions/Gameboard_UI.js";
-import { makeRandomPlay } from "./player.js";
+import { makeRandomPlay, Player } from "./player.js";
 
+
+function startGame() {
+    p1 = Player("Player",true,false)
+    p2 = Player("CPU", false,true);
+
+    player_board = new Gameboard();
+    cpu_board = new Gameboard();
+
+    player_board.autoPlaceShips(basicUnits());
+    cpu_board.autoPlaceShips(basicUnits());
+
+    player = {p1,player_board}
+    cpu = {p2,cpu_board}
+    return {player,cpu}
+}
 
 function restartGame(p1_board,p2_board)  {
     p1_board.resetBoard();
@@ -44,5 +59,5 @@ function gameLogic(cpu_board,player_board) {
 
 }
 
-export {gameLogic,endGame,restartGame}
+export {gameLogic,endGame,restartGame,startGame}
 

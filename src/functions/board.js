@@ -97,6 +97,7 @@ function validPosition(row,col) {
 }
 
 function autoPlaceShips(board, units) {
+    
     units.forEach((ship) => {
         let isFree;
         do {
